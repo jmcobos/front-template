@@ -1,0 +1,11 @@
+<div>
+  <form #recordarForm="ngForm" (ngSubmit)="onSubmit(); recordarForm.reset()">
+    <div [hidden]="hiddenError" class="alert alert-danger">El usuario no existe.</div>
+    <div class="form-group required">
+      <label for="usuario" class="control-label">Usuario:</label>
+      <input type="text" class="form-control" id="usuario" [(ngModel)]="login.usuario" name="usuario" #usuario="ngModel" placeholder="Usuario" required>
+      <div [hidden]="usuario.valid || usuario.pristine" class="alert alert-danger">El nombre de usuario es requerido.</div>
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="!recordarForm.form.valid">Recordar</button>
+  </form>
+</div>
