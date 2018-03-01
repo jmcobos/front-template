@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.auth.isAuthenticated(this.login.usuario) === false) {
+    if (this.auth.logearse(this.login.usuario, this.login.password) === false) {
       this.hiddenError = false;
     } else {
       this.hiddenError = true;
