@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
       this.hiddenError = false;
     } else {
       this.hiddenError = true;
+      this.auth.emitChange(this.login.usuario);
       this.router.navigate(['/inicio']);
     }
   }

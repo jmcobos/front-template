@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
 
   private mockUsuarios = [];
+
+  // Observable string sources
+  private emitChangeSource = new Subject<any>();
+  // Observable string streams
+  changeEmitted$ = this.emitChangeSource.asObservable();
 
   constructor() {
     this.mockUsuarios.push({ id: 0, nombre: 'javier', pass: 'hola' });
@@ -27,6 +34,11 @@ export class AuthService {
     } else {
       return false;
     }
+  }
+
+  // Service message commands
+  emitChange(change: any) {
+    this.emitChangeSource.next(change);
   }
 
 }
