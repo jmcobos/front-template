@@ -28,6 +28,12 @@ export class AuthService {
     return false;
   }
 
+  public logout(): void {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('id_token');
+      localStorage.removeItem('expires_at');
+  }
+
   private MockLogin(nombre: string): boolean {
     if (this.mockUsuarios.find(x => x.nombre === nombre)) {
       return true;
