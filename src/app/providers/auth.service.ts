@@ -17,6 +17,13 @@ export class AuthService {
     this.mockUsuarios.push({ id: 1, nombre: 'hector', pass: 'adios' });
   }
 
+  public isAuthenticated(): boolean {
+    if (JSON.parse(localStorage.getItem('currentUser')))
+      return true;
+    else
+      return false;
+  }
+
   public logearse(usuario: string, password: string): boolean {
     // Desde aquí se haría la petición a base de datos del usuario.
     // Nos llegaría un token.
@@ -29,9 +36,15 @@ export class AuthService {
   }
 
   public logout(): void {
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('id_token');
-      localStorage.removeItem('expires_at');
+      //localStorage.removeItem('access_token');
+      //localStorage.removeItem('id_token');
+      //localStorage.removeItem('expires_at');
+      localStorage.removeItem('currentUser');
+  }
+
+  // Service message commands
+  emitChange(change: any) {
+    this.emitChangeSource.next(change);
   }
 
   private MockLogin(nombre: string): boolean {
@@ -40,11 +53,6 @@ export class AuthService {
     } else {
       return false;
     }
-  }
-
-  // Service message commands
-  emitChange(change: any) {
-    this.emitChangeSource.next(change);
   }
 
 }

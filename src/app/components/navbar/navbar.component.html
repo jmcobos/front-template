@@ -1,18 +1,19 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="/inicio">Navbar</a>
+  <a *ngIf="!logeado" class="navbar-brand" href="/inicio">Guest Home</a>
+  <a *ngIf="logeado" class="navbar-brand" href="/escritorio">Guest Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/inicio" routerLinkActive="active">Inicio</a>
+      <li *ngIf="!logeado" class="nav-item active">
+        <a class="nav-link" routerLink="/caracteristicas" routerLinkActive="active">Características</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/vinilos" routerLinkActive="active">Vinilos</a>
+      <li *ngIf="logeado" class="nav-item active">
+        <a class="nav-link" routerLink="/escritorio" routerLinkActive="active">Escritorio</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+      <li *ngIf="logeado" class="nav-item">
+        <a class="nav-link" routerLink="/activos" routerLinkActive="active">Activos</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -24,15 +25,17 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">
     </form>
     <ul class="navbar-nav">
-      <li *ngIf="!mostrarUsuario" class="nav-item">
+      <li *ngIf="!logeado" class="nav-item">
         <a class="nav-link" routerLink="/login" routerLinkActive="active">Idenfiticarse</a>
       </li>
-      <li *ngIf="mostrarUsuario" class="nav-item">
+      <li *ngIf="logeado" class="nav-item">
         <a class="nav-link">Bienvenido, {{usuario}}</a>
+      </li>
+      <li *ngIf="logeado" class="nav-item">
+        <button type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Cerrar sesión</button>
       </li>
     </ul>    
   </div>

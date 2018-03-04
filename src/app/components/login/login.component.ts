@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from './../../models/login';
 import { AuthService } from './../../providers/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +12,7 @@ export class LoginComponent implements OnInit {
   login = new Login();
   hiddenError = true;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit {
     } else {
       this.hiddenError = true;
       this.auth.emitChange(this.login.usuario);
-      this.router.navigate(['/inicio']);
     }
   }
 
