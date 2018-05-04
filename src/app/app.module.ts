@@ -14,6 +14,8 @@ import { RecordarComponent } from './components/recordar/recordar.component';
 import { AuthService } from './../app/providers/auth.service';
 import { CaracteristicasComponent } from './components/views/caracteristicas/caracteristicas.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { CaracteristicasComponent } from './components/views/caracteristicas/car
   imports: [
     AppRoutes,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     AuthService
